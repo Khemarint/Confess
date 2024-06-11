@@ -48,4 +48,8 @@ class User extends Authenticatable
     public function brain(){
         return $this->hasMany(Brain::class);
     }
+
+    public function comment(){
+        return $this->hasMany(Comment::class);
+    }
 }
