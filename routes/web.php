@@ -5,42 +5,50 @@
     View: What should be shown to the user (HTML and CSS code / Blade files*/
 
 
+// In web.php or api.php
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\BrainController;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
 //     return view('welcome');
 // });
 
+Route::get('', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::get('/', [DashboardController::class,'index']) ->name('dashboard');
+Route::group(['prefix' => 'ideas/','as' => 'brain.'], function () {
 
-Route::post('/ideas', [BrainController::class,'store']) ->name('brain.create');
+    Route::post('', [BrainController::class, 'store'])->name('create');
 
-Route::delete('/ideas/{brain}', [BrainController::class,'destroy']) ->name('brain.destroy')->middleware('auth');
+    Route::get('/{brain}', [BrainController::class, 'show'])->name('show');
 
-Route::get('/ideas/{brain}', [BrainController::class,'show']) ->name('brain.show');
+    Route::group(['middleware' => ['auth']], function () {
 
-Route::get('/ideas/{brain}/edit', [BrainController::class,'edit']) ->name('brain.edit')->middleware('auth');
+    Route::delete('/{brain}', [BrainController::class, 'destroy'])->name('destroy');
 
-Route::put('/ideas/{brain}', [BrainController::class,'update']) ->name('brain.update')->middleware('auth');
+    Route::get('/{brain}/edit', [BrainController::class, 'edit'])->name('edit');
 
-Route::post('/ideas/{brain}/comments', [CommentController::class,'store']) ->name('brain.comments.store')->middleware('auth');
+    Route::put('/{brain}', [BrainController::class, 'update'])->name('update');
 
-Route::get('/register', [AuthController::class,'register']) ->name('register');
+    Route::post('/{brain}/comments', [CommentController::class, 'store'])->name('comments.store');
+    });
+});
 
-Route::post('/register', [AuthController::class,'store']);
+Route::get('/register', [AuthController::class, 'register'])->name('register');
 
-Route::get('/login', [AuthController::class,'login']) ->name('login');
+Route::post('/register', [AuthController::class, 'store']);
 
-Route::post('/login', [AuthController::class,'authenticate']);
+Route::get('/login', [AuthController::class, 'login'])->name('login');
 
-Route::post('/logout', [AuthController::class,'logout']) ->name('logout');
+Route::post('/login', [AuthController::class, 'authenticate']);
 
-Route::get('/terms', function(){
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+
+Route::get('/terms', function () {
     return view('terms');
 });

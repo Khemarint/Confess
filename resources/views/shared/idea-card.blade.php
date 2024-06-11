@@ -13,9 +13,9 @@
                 <form method="POST" action="{{route('brain.destroy',$brain->id)}}">
                     @csrf
                     @method('delete')
-                    {{-- <a class="mx-1" href="{{ route('brain.edit',$brain->id) }}">Edit</a> --}}
+                    <a class="mx-1" href="{{ route('brain.edit',$brain->id) }}">Edit</a>
                     <a href="{{ route('brain.show',$brain->id) }}">View</a>
-                    {{-- <button class="ms-1 btn btn-danger btn-sm">X</button> --}}
+                    <button class="ms-1 btn btn-danger btn-sm">X</button>
                 </form>
             </div>
         </div>
