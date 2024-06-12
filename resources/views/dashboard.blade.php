@@ -31,7 +31,6 @@
 
             <div class="mt-3">
                 {{ $brains->withQueryString()->links() }}
-
             </div>
 
         </div>

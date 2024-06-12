@@ -18,6 +18,8 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'bio',
+        'image',
         'email',
         'password',
     ];
@@ -46,10 +48,10 @@ class User extends Authenticatable
     }
 
     public function brain(){
-        return $this->hasMany(Brain::class);
+        return $this->hasMany(Brain::class)->latest();
     }
 
     public function comment(){
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(Comment::class)->latest();
     }
 }

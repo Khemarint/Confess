@@ -5,14 +5,24 @@
                 <img style="width:150px" class="me-3 avatar-sm rounded-circle"
                     src="https://api.dicebear.com/6.x/fun-emoji/svg?seed=Mario" alt="Mario Avatar">
                 <div>
-                    <h3 class="card-title mb-0"><a href="#"> {{$user->name}}
+                    <h3 class="card-title mb-0"><a href="#"> {{ $user->name }}
                         </a></h3>
-                    <span class="fs-6 text-muted">@mario</span>
+                    <span class="fs-6 text-muted">{{ $user->email }}</span>
+
                 </div>
             </div>
+            <div>
+                @auth()
+                    @if (Auth::id() === $user->id)
+                        <a href="{{ route('users.edit', $user->id) }}">Edit</a>
+                    @endif
+                @endauth
+            </div>
+
         </div>
+
         <div class="px-2 mt-4">
-            <h5 class="fs-5"> About : </h5>
+            <h5 class="fs-5"> Bio : </h5>
             <p class="fs-6 fw-light">
                 This book is a treatise on the theory of ethics, very popular during the
                 Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes
@@ -22,12 +32,17 @@
                 <a href="#" class="fw-light nav-link fs-6 me-3"> <span class="fas fa-user me-1">
                     </span> 0 Followers </a>
                 <a href="#" class="fw-light nav-link fs-6 me-3"> <span class="fas fa-brain me-1">
-                    </span> {{$user->brain()->count()}} </a>
+                    </span> {{ $user->brain()->count() }} </a>
                 <a href="#" class="fw-light nav-link fs-6"> <span class="fas fa-comment me-1">
-                    </span>  {{$user->comment()->count()}} </a>
+                    </span> {{ $user->comment()->count() }} </a>
             </div>
-            <div class="mt-3">
-                <button class="btn btn-primary btn-sm"> Follow </button>
-            </div>
+
+            @auth()
+                @if (Auth::id() !== $user->id)
+                    <div class="mt-3">
+                        <button class="btn btn-primary btn-sm"> Follow </button>
+                    </div>
+                @endif
+            @endauth
         </div>
     </div>

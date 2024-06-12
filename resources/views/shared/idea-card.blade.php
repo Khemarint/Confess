@@ -5,7 +5,7 @@
                 <img style="width:50px" class="me-2 avatar-sm rounded-circle"
                     src="https://api.dicebear.com/6.x/fun-emoji/svg?seed={{$brain->user->name}}" alt="{{$brain->user->name}}">
                 <div>
-                    <h5 class="card-title mb-0"><a href="#"> {{$brain->user->name}}
+                    <h5 class="card-title mb-0"><a href="{{route('users.show',$brain->user->id)}}"> {{$brain->user->name}}
                         </a></h5>
                 </div>
             </div>
