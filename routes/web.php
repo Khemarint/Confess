@@ -7,6 +7,7 @@
 
 // In web.php or api.php
 
+use App\Http\Controllers\IdeaLikeController;
 use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
@@ -50,7 +51,9 @@ Route::post('/login', [AuthController::class, 'authenticate']);
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::resource('users',UserController::class)->only('show','edit','update')->middleware('auth');
+Route::resource('users',UserController::class)->only('edit','update')->middleware('auth');
+
+Route::resource('users',UserController::class)->only('show');
 
 Route::get('/profile', [UserController::class, 'profile'])->middleware('auth')->name('profile');
 
@@ -58,9 +61,9 @@ Route::post('users/{user}/follow',[FollowerController::class,'follow'])->middlew
 
 Route::post('users/{user}/unfollow',[FollowerController::class,'unfollow'])->middleware('auth')->name('users.unfollow');
 
-Route::post('brains/{brain}/like',[FollowerController::class,'like'])->middleware('auth')->name('brains.like');
+Route::post('brains/{brain}/like',[IdeaLikeController::class,'like'])->middleware('auth')->name('brains.like');
 
-Route::post('brains/{brain}/unlike',[FollowerController::class,'unlike'])->middleware('auth')->name('brains.unlike');
+Route::post('brains/{brain}/unlike',[IdeaLikeController::class,'unlike'])->middleware('auth')->name('brains.unlike');
 
 
 Route::get('/terms', function () {

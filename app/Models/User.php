@@ -75,8 +75,13 @@ class User extends Authenticatable
     public function follows(User $user){
         return $this->followings()->where('user_id',$user->id)->exists();
     }
-    public function likes(){
+
+    public function likings(){
         return $this->belongsToMany(Brain::class,'brain_like')->withTimestamps();
+    }
+
+    public function Likes(Brain $brain){
+        return $this->likings()->where('brain_id',$brain->id)->exists();
     }
 
 }
