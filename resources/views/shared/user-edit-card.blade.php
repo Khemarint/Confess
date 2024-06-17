@@ -49,13 +49,7 @@
                         </span> {{ $user->comment()->count() }} </a>
                 </div>
 
-                @auth()
-                    @if (Auth::id() !== $user->id)
-                        <div class="mt-3">
-                            <button class="btn btn-primary btn-sm"> Follow </button>
-                        </div>
-                    @endif
-                @endauth
+
             </div>
         </form>
     </div>

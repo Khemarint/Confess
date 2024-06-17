@@ -7,6 +7,7 @@
 
 // In web.php or api.php
 
+use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
@@ -53,9 +54,15 @@ Route::resource('users',UserController::class)->only('show','edit','update')->mi
 
 Route::get('/profile', [UserController::class, 'profile'])->middleware('auth')->name('profile');
 
+Route::post('users/{user}/follow',[FollowerController::class,'follow'])->middleware('auth')->name('users.follow');
 
+Route::post('users/{user}/unfollow',[FollowerController::class,'unfollow'])->middleware('auth')->name('users.unfollow');
+
+Route::post('brains/{brain}/like',[FollowerController::class,'like'])->middleware('auth')->name('brains.like');
+
+Route::post('brains/{brain}/unlike',[FollowerController::class,'unlike'])->middleware('auth')->name('brains.unlike');
 
 
 Route::get('/terms', function () {
     return view('terms');
-});
+})->name('terms');

@@ -8,12 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Brain extends Model
 {
     use HasFactory;
+
+    protected $with = [
+        'user:id,name,image',
+        'comments.user:id,name,image'
+    ];
+
     protected $table = 'brain';
 
     protected $fillable = [
         'user_id',
         'content',
-        'likes',
     ];
 
     public function comments(){
@@ -23,4 +28,9 @@ class Brain extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+
+    public function likes(){
+        return $this->belongsToMany(User::class,'brain_like')->withTimestamps();
+    }
+
 }
