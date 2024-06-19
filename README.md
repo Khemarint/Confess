@@ -10,6 +10,7 @@ MySocialApp is a social media platform where users can connect, share their thou
 
 2. **Confess Feelings:**
    - Users can express their feelings by creating posts (text-based).
+   - Users: can edit update delete their posts.
 
 3. **Interactions:**
    - **Likes:** Users can like posts created by others.
