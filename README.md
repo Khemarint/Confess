@@ -1,6 +1,6 @@
-# MySocialApp
+# Confess
 
-MySocialApp is a social media platform where users can connect, share their thoughts, and interact with each other. It's built using PHP Laravel and provides features like user registration, posting, commenting, liking, and profile management.
+Confess is a social media platform where users can connect, share their thoughts, and interact with each other. It's built using PHP Laravel and provides features like user registration, posting, commenting, liking, and profile management.
 
 ## Features
 
