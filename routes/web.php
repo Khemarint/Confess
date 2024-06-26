@@ -12,7 +12,9 @@ use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Admin\DashboardController as Admin;
 use App\Http\Controllers\BrainController;
+use App\Http\Controllers\FeedController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -65,7 +67,11 @@ Route::post('brains/{brain}/like',[IdeaLikeController::class,'like'])->middlewar
 
 Route::post('brains/{brain}/unlike',[IdeaLikeController::class,'unlike'])->middleware('auth')->name('brains.unlike');
 
+Route::get('/feed', FeedController::class)->middleware('auth')->name('feed');
+
 
 Route::get('/terms', function () {
     return view('terms');
 })->name('terms');
+
+Route::get('/admin',[Admin::class,'index'])->name('admin.dashboard')->middleware(['auth','can:admin']);

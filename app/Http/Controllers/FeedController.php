@@ -1,16 +1,21 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Brain;
 use Illuminate\Http\Request;
-
-class DashboardController extends Controller
+use App\Models\User;
+class FeedController extends Controller
 {
-    public function index()
+    /**
+     * Handle the incoming request.
+     */
+    public function __invoke(Request $request)
     {
+        $user = auth()->user();
 
-        $brains = Brain::orderBy("created_at", "desc");
+        $followingIDs = $user->followings()->pluck('user_id');
+
+        $brains = Brain::whereIn('user_id',$followingIDs)->latest();
 
         if (request()->has("search")) {
             $brains = $brains->where("content", "LIKE", "%" . request()->get('search', '') . '%');

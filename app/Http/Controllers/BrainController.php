@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 use App\models\Brain;
 
 class BrainController extends Controller
 {
+    use AuthorizesRequests;
 
     public function show(Brain $brain){
 
@@ -30,10 +32,7 @@ class BrainController extends Controller
         return redirect()->route('dashboard')->with('success', ' created successfully !');
     }
     public function destroy(Brain $brain){
-        // where id=1
-        if(auth()->id() !== $brain->user_id){
-            abort(404);
-        }
+       $this->authorize('brain.delete', $brain);
 
       $brain->delete();
 
@@ -41,10 +40,7 @@ class BrainController extends Controller
     }
 
     public function edit(Brain $brain){
-        if(auth()->id() !== $brain->user_id){
-            abort(404);
-        }
-
+        $this->authorize('brain.edit', $brain);
 
         $editing = true;
         return view('Confess.show',compact('brain','editing')) ;
@@ -52,9 +48,8 @@ class BrainController extends Controller
 
     public function update(Brain $brain){
 
-        if(auth()->id() !== $brain->user_id){
-            abort(404);
-        }
+        $this->authorize('brain.edit', $brain);
+
 
 
         $validated = request()->validate(

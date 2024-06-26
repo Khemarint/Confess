@@ -84,4 +84,5 @@ class User extends Authenticatable
         return $this->likings()->where('brain_id',$brain->id)->exists();
     }
 
+
 }
