@@ -32,7 +32,7 @@ class BrainController extends Controller
         return redirect()->route('dashboard')->with('success', ' created successfully !');
     }
     public function destroy(Brain $brain){
-       $this->authorize('brain.delete', $brain);
+       $this->authorize('delete', $brain);
 
       $brain->delete();
 
@@ -40,7 +40,7 @@ class BrainController extends Controller
     }
 
     public function edit(Brain $brain){
-        $this->authorize('brain.edit', $brain);
+        $this->authorize('update', $brain);
 
         $editing = true;
         return view('Confess.show',compact('brain','editing')) ;
@@ -48,7 +48,7 @@ class BrainController extends Controller
 
     public function update(Brain $brain){
 
-        $this->authorize('brain.edit', $brain);
+        $this->authorize('update', $brain);
 
 
 
