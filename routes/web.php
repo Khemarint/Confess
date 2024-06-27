@@ -75,3 +75,11 @@ Route::get('/terms', function () {
 })->name('terms');
 
 Route::get('/admin',[Admin::class,'index'])->name('admin.dashboard')->middleware(['auth','can:admin']);
+
+
+Route::get('lang/{lang}', function($lang){
+    app()->setLocale($lang);
+    session()->put('locale', $lang);
+
+    return redirect()->route('dashboard');
+})->name('lang');

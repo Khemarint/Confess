@@ -15,6 +15,7 @@
         </ul>
     </div>
     <div class="card-footer text-center py-2">
-        <a class="btn btn-link btn-sm" href="{{route('profile')}}">View Profile </a>
+        <a class="btn btn-link btn-sm" href="{{route('lang','en')}}"> en </a>
+        <a class="btn btn-link btn-sm" href="{{route('lang','kh')}}"> kh </a>
     </div>
 </div>
