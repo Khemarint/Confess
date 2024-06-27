@@ -16,5 +16,5 @@
 </div>
 @endauth
 @guest()
-<h4>Login to confess your feeling.</h4>
+<h4>{{ __('brain.login_to_share') }}</h4>
 @endguest
