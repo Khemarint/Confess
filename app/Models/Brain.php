@@ -14,6 +14,8 @@ class Brain extends Model
         'comments.user:id,name,image'
     ];
 
+    protected $withCount = ['likes'];
+
     protected $table = 'brain';
 
     protected $fillable = [

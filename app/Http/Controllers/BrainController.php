@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateIdeaRequest;
+use App\Http\Requests\UpdateIdeaRequest;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 use App\models\Brain;
@@ -16,14 +18,10 @@ class BrainController extends Controller
     }
 
 
-    public function store()
+    public function store(CreateIdeaRequest $request)
     {
 
-        $validated = request()->validate(
-            [
-                'content' => 'required|min:5|max:240'
-            ]
-        );
+        $validated = $request->validated();
 
         $validated['user_id'] = auth()->id();
 
@@ -46,18 +44,11 @@ class BrainController extends Controller
         return view('Confess.show',compact('brain','editing')) ;
     }
 
-    public function update(Brain $brain){
+    public function update(UpdateIdeaRequest $request,Brain $brain){
 
         $this->authorize('update', $brain);
 
-
-
-        $validated = request()->validate(
-            [
-                'content' => 'required|min:5|max:240'
-            ]
-        );
-
+        $validated = $request->validated();
         // dd(request()->all());
 
         $brain->update($validated);

@@ -14,7 +14,7 @@ class BrainPolicy
     public function update(User $user, Brain $brain): bool
     {
         //
-        return ($user->is_admin || $user->id === $brain->user_id);
+        return ($user->is_admin || $user->is($brain->user));
     }
 
     /**
@@ -23,7 +23,7 @@ class BrainPolicy
     public function delete(User $user, Brain $brain): bool
     {
         //
-        return ($user->is_admin || $user->id === $brain->user_id);
+        return ($user->is_admin || $user->is($brain->user));
     }
 
 
