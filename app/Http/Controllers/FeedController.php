@@ -18,7 +18,7 @@ class FeedController extends Controller
         $brains = Brain::whereIn('user_id',$followingIDs)->latest();
 
         if (request()->has("search")) {
-            $brains = $brains->where("content", "LIKE", "%" . request()->get('search', '') . '%');
+            $brains = $brains->search(request('search',''));
         }
 
         // This is record

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class Brain extends Model
 {
@@ -33,6 +34,11 @@ class Brain extends Model
 
     public function likes(){
         return $this->belongsToMany(User::class,'brain_like')->withTimestamps();
+    }
+
+    public function scopeSearch( $query, $search = '')
+    {
+        $query->where("content", "LIKE", "%" .$search. '%');
     }
 
 }

@@ -13,6 +13,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\DashboardController as Admin;
+use App\Http\Controllers\Admin\UserController as AdminUser;
 use App\Http\Controllers\BrainController;
 use App\Http\Controllers\FeedController;
 use App\Http\Controllers\UserController;
@@ -74,7 +75,6 @@ Route::get('/terms', function () {
     return view('terms');
 })->name('terms');
 
-Route::get('/admin',[Admin::class,'index'])->name('admin.dashboard')->middleware(['auth','can:admin']);
 
 
 Route::get('lang/{lang}', function($lang){
@@ -83,3 +83,13 @@ Route::get('lang/{lang}', function($lang){
 
     return redirect()->route('dashboard');
 })->name('lang');
+
+
+Route::middleware(['auth', 'can:admin'])->prefix('/admin')->as('admin.')->group(function(){
+
+    Route::get('/',[Admin::class,'index'])->name('dashboard');
+    Route::get('/users',[AdminUser::class,'index'])->name('users');
+
+});
+
+

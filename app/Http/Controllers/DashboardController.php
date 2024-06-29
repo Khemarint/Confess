@@ -3,22 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Brain;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-
-        $brains = Brain::orderBy("created_at", "desc");
-
-        if (request()->has("search")) {
-            $brains = $brains->where("content", "LIKE", "%" . request()->get('search', '') . '%');
-        }
-
+        $brains = Brain::when(request()->has('search'), function ($query) {
+            $query->search(request('search',''));
+        })->orderBy('created_at','desc')->paginate(5);
         // This is record
         return view("dashboard", [
-            'brains' => $brains->paginate(2)
+            'brains' => $brains,
         ]);
     }
 }

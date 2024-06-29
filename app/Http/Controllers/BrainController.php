@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateIdeaRequest;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 use App\models\Brain;
+use App\Models\User;
 
 class BrainController extends Controller
 {
