@@ -1,6 +1,6 @@
 # Confess
 
-Confess is a social media platform where users can connect, share their thoughts, and interact. It's built using PHP Laravel and provides features like user registration, posting, commenting, liking profile management, and Admin.
+Confess is a social media platform where users can connect, share their thoughts, and interact. It's built using PHP Laravel and provides features like user registration, posting, commenting, liking profile management, and admin.
 
 ## Features
 
@@ -23,6 +23,7 @@ Confess is a social media platform where users can connect, share their thoughts
      - Users can also view other users' profiles.
    - **Edit Profile:**
      - Users can update their profile information, such as name, profile picture, and bio.
+       
 5.**Admin Management:**
    - **Users** Manage Users.
    - **Status** Manage Status.
