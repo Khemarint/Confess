@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Brain;
+use App\Models\Comment;
 
 class DashboardController extends Controller
 {
@@ -14,6 +17,10 @@ class DashboardController extends Controller
 
     public function index()
     {
-        return view('admin.dashboard');
+        $totalUsers = User::count();
+        $totalIdeas = Brain::count();
+        $totalComments = Comment::count();
+        return view('admin.dashboard',
+    compact('totalUsers','totalIdeas','totalComments'));
     }
 }

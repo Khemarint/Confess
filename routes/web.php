@@ -14,6 +14,8 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\DashboardController as Admin;
 use App\Http\Controllers\Admin\UserController as AdminUser;
+use App\Http\Controllers\Admin\IdeaController as AdminIdea;
+use App\Http\Controllers\Admin\CommentController as AdminComment;
 use App\Http\Controllers\BrainController;
 use App\Http\Controllers\FeedController;
 use App\Http\Controllers\UserController;
@@ -89,7 +91,9 @@ Route::middleware(['auth', 'can:admin'])->prefix('/admin')->as('admin.')->group(
 
     Route::get('/',[Admin::class,'index'])->name('dashboard');
     Route::get('/users',[AdminUser::class,'index'])->name('users');
-
+    Route::get('/ideas',[AdminIdea::class,'index'])->name('ideas');
+    Route::get('/comments',[AdminComment::class,'index'])->name('comments');
+    Route::delete('/comments/{comment}', [AdminComment::class, 'destroy'])->name('comments.destroy');
 });
 
 
