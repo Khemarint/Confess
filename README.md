@@ -1,6 +1,6 @@
 # Confess
 
-Confess is a social media platform where users can connect, share their thoughts, and interact with each other. It's built using PHP Laravel and provides features like user registration, posting, commenting, liking, and profile management.
+Confess is a social media platform where users can connect, share their thoughts, and interact. It's built using PHP Laravel and provides features like user registration, posting, commenting, liking profile management, and Admin.
 
 ## Features
 
@@ -10,7 +10,7 @@ Confess is a social media platform where users can connect, share their thoughts
 
 2. **Confess Feelings:**
    - Users can express their feelings by creating posts (text-based).
-   - Users: can edit update delete their posts.
+   - Users: can edit update, and delete their posts.
 
 3. **Interactions:**
    - **Likes:** Users can like posts created by others.
@@ -19,10 +19,15 @@ Confess is a social media platform where users can connect, share their thoughts
 
 4. **Profile Management:**
    - **View Profile:**
-     - Users can view their own profile, including their posts, followers, and likes.
+     - Users can view their profile, including their posts, followers, and likes.
      - Users can also view other users' profiles.
    - **Edit Profile:**
      - Users can update their profile information, such as name, profile picture, and bio.
+5.**Admin Management:**
+   - **Users** Manage Users.
+   - **Status** Manage Status.
+   - **Comment** Manage Comment which user comments.
+     
 
 ## Installation
 
@@ -46,7 +51,7 @@ composer install
   ```
 
 4. **Generate Application Key:**
-php artisan key:generate
+php artisan key: generate
 
 
 5. **Run Migrations:**
@@ -61,7 +66,7 @@ Open your browser and visit `http://localhost:8000`.
 
 ## Contributing
 
-Contributions are welcome! If you find any issues or want to add new features, feel free to submit a pull request.
+Contributions are welcome! Feel free to submit a pull request if you find any issues or want to add new features.
 
 ## License
 
